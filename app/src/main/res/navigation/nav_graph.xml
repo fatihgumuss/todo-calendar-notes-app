@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.thenotesapp.fragments.HomeFragment"
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_addNoteFragment"
+            app:destination="@id/addNoteFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_editNoteFragment"
+            app:destination="@id/editNoteFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addNoteFragment"
+        android:name="com.example.thenotesapp.fragments.AddNoteFragment"
+        android:label="AddNoteFragment" >
+        <action
+            android:id="@+id/action_addNoteFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editNoteFragment"
+        android:name="com.example.thenotesapp.fragments.EditNoteFragment"
+        android:label="EditNoteFragment" >
+        <action
+            android:id="@+id/action_editNoteFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+
+        <argument
+            android:name="note"
+            app:argType="com.example.thenotesapp.model.Note"
+            app:nullable="true"/>
+    </fragment>
+    <fragment
+        android:id="@+id/todoListFragment"
+        android:name="com.example.thenotesapp.fragments.TodoListFragment"
+        android:label="TodoListFragment" >
+        <action
+            android:id="@+id/action_todoListFragment_to_addTodoFragment"
+            app:destination="@id/addTodoFragment" />
+    </fragment>
+    <fragment
+    android:id="@+id/addTodoFragment"
+    android:name="com.example.thenotesapp.fragments.AddTodoFragment"
+    android:label="AddTodoFragment" >
+    <action
+        android:id="@+id/action_addTodoFragment_to_todoListFragment"
+        app:destination="@id/todoListFragment" />
+    <argument
+        android:name="selectedDate"
+        app:argType="long"/>
+</fragment>
+    <fragment
+        android:id="@+id/editTodoFragment"
+        android:name="com.example.thenotesapp.fragments.EditTodoFragment"
+        android:label="EditTodoFragment" >
+        <action
+            android:id="@+id/action_editTodoFragment_to_todoListFragment"
+            app:destination="@id/todoListFragment" />
+        <argument
+            android:name="todo"
+            app:argType="com.example.thenotesapp.model.ToDoItem" />
+    </fragment>
+    <action
+        android:id="@+id/action_todoListFragment_to_editTodoFragment"
+        app:destination="@id/editTodoFragment" />
+    <fragment
+        android:id="@+id/calendarFragment"
+        android:name="com.example.thenotesapp.fragments.CalendarFragment"
+        android:label="CalendarFragment">
+        <action
+            android:id="@+id/action_calendarFragment_to_editTodoFragment"
+            app:destination="@id/editTodoFragment" />
+        <action
+            android:id="@+id/action_calendarFragment_to_addTodoFragment"
+            app:destination="@id/addTodoFragment" />
+    </fragment>
+</navigation>

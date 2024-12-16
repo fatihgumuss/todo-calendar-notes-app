@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "one-moon-439014-g2",
+  "private_key_id": "8e3a610cb5d62ee9ce094c615b1e19111767b819",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQDqmy31byaw6sFM\nfRGrjo4yBdFqhK7QSR2XjguuwOe+LDNlv2TWuDn2Cf17aMUmlhHJbKU1EmbnlQJc\nhN+CuT9znWi9PsNmw+G+JTaO52d57uRG8vAFBE3nnzjui0IryzSWFLEexJgS/wxN\noqKUCXZ8RlAn9+IbkZ9V9/I+GP3N5lv/EyC7FHDLZQ0AOePJ2tgC/a48BNNSH4WR\n+fq4aW1VRu9LJfa1Y+kAgqyEtwNKFsWZsVtoHH1wtxi/iWUQk+mmoKRSlHnrOmXf\nndYfgznpzDeZzE1Z4+NfgJLNm8ZlV+NJNWPq4QiLvNb0V0FKH4iMIXzeIrfAIYOF\nT0jlWp6jAgMBAAECggEALX8xnv7SxI2KNhCtLBWFyvqo3Zzkn/0F8Z2480dyycUd\npJZE8oUgrG/MijHLxgtlYKgis9OhRDj4D8Qu6lWNkhjNNqIk19mV/j+OQJFs1k83\nUvELDhYDG6+bpVs5Vm/ef1p87OgYS9rNYoLvP4FESp6CLfYbEdigS1Y90sAa/GJY\nhcHALh/WHN1rhQmbASJ1i+gJFm1+k9KEVs+0oS1Z+QOxFCWek3mncnQoOUiEgHvV\nAE86oTc/itKhry1Chc9/gOw2Q1/9F8EwddBTEA6h2ATSo3saWGhLxYsSq+lWklU3\nILeuX8EzYYJB4IFtVXXSzUl9yvvSrlVCaJDiygzy+QKBgQD+z90PojGABcDIiy04\nCKEY5N4nl79bluEYVwkTdy2ratrhGc/cqprSRJSXCdlqqmy7Bwb7D1VxM8N1dxgw\nD2Kkw1mpApkyPp6X1sVLpSZnUDjTOPWRjdQzJvU1Kein8YJubg1ngZaBzA8AhtUo\nomZBxzwOay/R96yTAQTbdVM6yQKBgQDrszLtA7yTE1ciZbLOAItCXkuT2ITlY/Ha\nH6MYKbew09v5kfSbovJct3yMMMG+WbPxDLQqstYzJEiop6BWFk+1QPxKNWDhA3eT\nCZC0m7RVV11BlhIBkfpQS75FepvlJNRZdCREkqHFPxZMaBqZBmj5Ms61jV+Smg9Y\nrTv9AQJYCwKBgQCf83WN4b924KWifZMWEHyntsspSV1qreyArenZmT9G0l2xXdWY\nbFOhWEF6Ckm7Zl24jXG5WWfGFrtEWk0Jpi7CxIncyO/HlX1STRQuJu5Tfg0dsiyc\ngM5KidL022jbO4Qns9egOL10ntZv+zOFPWQ5OEqftnMfN3zSDpqw9BYZ2QKBgQC3\nP96jKZmOW6YOJzVqNkAPPJLUAq3oTtk1Ng2udpjLURwgoBqmenymGz4pHKs1HDbr\nfW4CGIKyxk37WkAtTjFwgXLlGzUUHIb1+aTY1onRJBhsKoobUGxly03GZPoZoJW8\narDb44kEevUSOIodWT96J8dQnfalW0P9NMqD/SneWwKBgQDdqCSTHYQ/LXZUBYUc\nULTwcV19sn1/V/twz/FR22EFLDb+tdwZjHkjD8aKI9myvyqxmfqqjzfN1IBDPqHR\nx471wU01Kd1J9DUKMPVca1BCEARnroJO6WsQ3eRwOkWFZlIF9D2l3ntSNr90+xko\nKzI5TpGroWXXvcH3wBDwu/kw6w==\n-----END PRIVATE KEY-----\n",
+  "client_email": "notes-app@one-moon-439014-g2.iam.gserviceaccount.com",
+  "client_id": "104937516501984249312",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/notes-app%40one-moon-439014-g2.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

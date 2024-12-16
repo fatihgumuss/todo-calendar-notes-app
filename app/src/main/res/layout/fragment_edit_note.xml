@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="12dp"
+        tools:context=".UpdateNoteFragment">
+
+        <ImageButton
+            android:id="@+id/saveButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginLeft="16dp"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_save"
+            />
+        <ImageButton
+            android:id="@+id/backButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_back" />
+
+        <ImageButton
+            android:id="@+id/deleteButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toStartOf="@id/saveButton"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/delete"
+            />
+
+        <EditText
+            android:id="@+id/editNoteTitle"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:hint="Enter the title"
+            android:padding="12dp"
+            android:textSize="20sp"
+            android:background="@drawable/pink_border"
+            android:layout_marginTop="40dp"
+            android:maxLines="1"
+            android:fontFamily="@font/poppins"/>
+
+        <LinearLayout
+            android:id="@+id/editNoteDescContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/editNoteTitle"
+            android:layout_marginTop="12dp"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/editNoteDesc"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:hint="Enter the description"
+                android:gravity="top"
+                android:padding="12dp"
+                android:textSize="18sp"
+                android:fontFamily="@font/poppins"
+                android:background="@drawable/pink_border"/>
+
+            <ImageView
+                android:id="@+id/editNoteImageView"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="12dp"
+                android:visibility="gone"
+                tools:src="@drawable/ic_launcher_background"/>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/editImageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/optionsButton"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="16dp"
+            android:text="Add or Edıt Image"/>
+
+        <ImageButton
+            android:id="@+id/optionsButton"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:src="@drawable/ic_more"
+            android:background="?android:attr/selectableItemBackgroundBorderless" />
+
+    </RelativeLayout>
+</layout>
