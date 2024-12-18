@@ -7,7 +7,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 class GeminiService(private val context: Context) {
-    private val apiKey = "" // Replace with your Gemini API key
+    private val apiKey = "AIzaSyCwNWX1WJk44RLdKtqmqtffXbbEJG3kxLs" // Replace with your Gemini API key
     private val model by lazy {
         GenerativeModel(
             modelName = "gemini-pro",
