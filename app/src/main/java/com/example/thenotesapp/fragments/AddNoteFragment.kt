@@ -13,6 +13,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
@@ -47,6 +48,7 @@ class AddNoteFragment : Fragment(R.layout.fragment_add_note), MenuProvider {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (activity as AppCompatActivity).supportActionBar?.hide()
         val menuHost: MenuHost = requireActivity()
         menuHost.addMenuProvider(this, viewLifecycleOwner, Lifecycle.State.RESUMED)
 
@@ -61,6 +63,23 @@ class AddNoteFragment : Fragment(R.layout.fragment_add_note), MenuProvider {
         // Microphone button click listener
         binding.microphoneButton.setOnClickListener {
             startSpeechToText()
+        }
+        binding.backButton.setOnClickListener {
+            view.findNavController().popBackStack()
+        }
+        binding.saveButton.setOnClickListener {
+            val noteTitle = binding.addNoteTitle.text.toString().trim()
+            val noteDesc = binding.addNoteDesc.text.toString().trim()
+
+            if (noteTitle.isNotEmpty()) {
+                val note = Note(0, noteTitle, noteDesc, selectedImageUri.toString()) // Resmi nota kaydet
+                notesViewModel.addNote(note)
+
+                Toast.makeText(addNoteView.context, "Note Saved", Toast.LENGTH_SHORT).show()
+                view.findNavController().popBackStack(R.id.homeFragment, false)
+            } else {
+                Toast.makeText(addNoteView.context, "Please enter note title", Toast.LENGTH_SHORT).show()
+            }
         }
     }
     private val resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -128,5 +147,6 @@ class AddNoteFragment : Fragment(R.layout.fragment_add_note), MenuProvider {
     override fun onDestroy() {
         super.onDestroy()
         addNoteBinding = null
+        (activity as AppCompatActivity).supportActionBar?.show()
     }
 }

@@ -65,6 +65,19 @@ class ToDoAdapter(private val toDoViewModel: ToDoViewModel) : RecyclerView.Adapt
             todoCheckBox.visibility = View.VISIBLE
             deleteTodoImageView.visibility = View.VISIBLE
             todoTextView.setTextColor(Color.BLACK)
+            if (currentToDo.isCompleted) {
+                todoTextView.apply {
+                    paintFlags = paintFlags or Paint.STRIKE_THRU_TEXT_FLAG // Strike through the text
+                    setTextColor(Color.GRAY) // Change text color to gray
+                }
+                todoDescriptionTextView.setTextColor(Color.GRAY) // Change description color to gray
+            } else {
+                todoTextView.apply {
+                    paintFlags = paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv() // Remove strike through
+                    setTextColor(Color.BLACK) // Change text color back to black
+                }
+                todoDescriptionTextView.setTextColor(Color.BLACK) // Change description color back to black
+            }
             val priorityColor = when (currentToDo.priority) {
                 0 -> Color.parseColor("#D4F1C5")
                 1 -> Color.parseColor("#FFD88C")
