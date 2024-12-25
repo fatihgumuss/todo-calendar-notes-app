@@ -41,10 +41,12 @@
             <ImageView
                 android:id="@+id/noteImage"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:visibility="gone"
-                android:adjustViewBounds="true" />
+                android:maxHeight="200dp"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop" />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>

@@ -87,4 +87,6 @@ dependencies {
     implementation("com.google.ai.client.generativeai:generativeai:0.9.0")
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation ("com.tom-roush:pdfbox-android:2.0.27.0")
+    implementation ("com.rmtheis:tess-two:9.1.0")
 }
