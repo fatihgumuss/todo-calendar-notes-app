@@ -6,9 +6,14 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
 import com.example.thenotesapp.database.NoteDatabase
 import com.example.thenotesapp.databinding.ActivityMainBinding
+import com.example.thenotesapp.fragments.CalendarFragment
+import com.example.thenotesapp.fragments.TodoListFragment
 import com.example.thenotesapp.repository.NoteRepository
 import com.example.thenotesapp.repository.ToDoRepository
 import com.example.thenotesapp.viewmodel.NoteViewModel
@@ -23,14 +28,57 @@ class MainActivity : AppCompatActivity() {
     lateinit var toDoViewModel: ToDoViewModel
     private lateinit var toggle: ActionBarDrawerToggle
     private lateinit var notificationHelper: NotificationHelper
+    private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setupViewModel()
-        setupNavigationDrawer()
         notificationHelper = NotificationHelper(this)
+
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
+        navController = navHostFragment.navController
+
+        // Setup bottom navigation
+        binding.bottomNavigationView.setupWithNavController(navController)
+
+        // Handle FAB clicks based on current destination
+        binding.fab.setOnClickListener {
+            val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
+            val currentFragment = navHostFragment.childFragmentManager.fragments[0]
+
+            when (currentFragment) {
+                is CalendarFragment -> {
+                    val bundle = Bundle().apply {
+                        putLong("selectedDate", currentFragment.getSelectedDate())
+                    }
+                    navController.navigate(R.id.action_calendarFragment_to_addTodoFragment, bundle)
+                }
+                is TodoListFragment -> {
+                    navController.navigate(R.id.action_todoListFragment_to_addTodoFragment)
+                }
+                else -> {
+                    // Handle navigation to AddNoteFragment for the notes section
+                    navController.navigate(R.id.action_homeFragment_to_addNoteFragment)
+                }
+            }
+        }
+
+        // Hide FAB on destinations where it's not needed
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.addNoteFragment, R.id.editNoteFragment,
+                R.id.addTodoFragment, R.id.editTodoFragment -> {
+                    binding.fab.hide()
+                    binding.bottomAppBar.performHide()
+                }
+                else -> {
+                    binding.fab.show()
+                    binding.bottomAppBar.performShow()
+                }
+            }
+        }
     }
 
     private fun setupViewModel() {
@@ -43,31 +91,6 @@ class MainActivity : AppCompatActivity() {
         toDoViewModel = ViewModelProvider(this, toDoViewModelProviderFactory)[ToDoViewModel::class.java]
     }
 
-    private fun setupNavigationDrawer() {
-        toggle = ActionBarDrawerToggle(this, binding.drawerLayout, R.string.open, R.string.close)
-        binding.drawerLayout.addDrawerListener(toggle)
-        toggle.syncState()
-
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
-        binding.navView.setNavigationItemSelectedListener {
-            when (it.itemId) {
-                R.id.notesFragment -> {
-                    binding.drawerLayout.closeDrawer(GravityCompat.START)
-                    findNavController(R.id.fragmentContainerView).navigate(R.id.homeFragment)
-                }
-                R.id.todoListFragment -> {
-                    binding.drawerLayout.closeDrawer(GravityCompat.START)
-                    findNavController(R.id.fragmentContainerView).navigate(R.id.todoListFragment)
-                }
-                R.id.nav_calendar -> {
-                    binding.drawerLayout.closeDrawer(GravityCompat.START)
-                    findNavController(R.id.fragmentContainerView).navigate(R.id.calendarFragment)
-                }
-            }
-            true
-        }
-    }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (toggle.onOptionsItemSelected(item)) {

@@ -54,6 +54,8 @@ class CalendarFragment : Fragment() {
         uri?.let { handlePdfSelection(it) }
     }
 
+    private var selectedDate: Long = 0
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -75,28 +77,17 @@ class CalendarFragment : Fragment() {
         val viewModelFactory = ToDoViewModelFactory(requireActivity().application, toDoRepository)
         toDoViewModel = ViewModelProvider(this, viewModelFactory)[ToDoViewModel::class.java]
         setupRecyclerView()
-        var selectedDate: Long = binding.calendarView.date
+
         binding.calendarView.setOnDateChangeListener { _, year, month, dayOfMonth ->
-            val calendar = Calendar.getInstance()
-            calendar.set(year, month, dayOfMonth)
-            selectedDate = calendar.timeInMillis
-            toDoViewModel.getToDosByDate(selectedDate).observe(viewLifecycleOwner) { todos ->
-                toDoAdapter.differ.submitList(todos)
-            }
-        }
-        binding.calendarView.setOnDateChangeListener { _, year, month, dayOfMonth ->
-                selectedDate = Calendar.getInstance().apply {
+            val calendar = Calendar.getInstance().apply {
                 set(year, month, dayOfMonth)
                 set(Calendar.HOUR_OF_DAY, 0)
                 set(Calendar.MINUTE, 0)
                 set(Calendar.SECOND, 0)
                 set(Calendar.MILLISECOND, 0)
-            }.timeInMillis
+            }
+            selectedDate = calendar.timeInMillis
             loadTasksForDate(selectedDate)
-        }
-        binding.fabAddTodo.setOnClickListener {
-            val action = CalendarFragmentDirections.actionCalendarFragmentToAddTodoFragment(selectedDate)
-            view?.findNavController()?.navigate(action)
         }
 
         // Initialize services
@@ -228,13 +219,6 @@ class CalendarFragment : Fragment() {
                     }
                 }
 
-                withContext(Dispatchers.Main) {
-                    Snackbar.make(
-                        binding.root,
-                        "Successfully imported $importedCount events",
-                        Snackbar.LENGTH_LONG
-                    ).show()
-                }
             } catch (e: Exception) {
                 Log.e(TAG, "Error during PDF import", e)
                 withContext(Dispatchers.Main) {
@@ -257,7 +241,6 @@ class CalendarFragment : Fragment() {
 
     private fun showLoading(show: Boolean) {
         binding.progressBar.visibility = if (show) View.VISIBLE else View.GONE
-        binding.fabAddTodo.isEnabled = !show
         binding.fabImportPdf.isEnabled = !show
     }
 
@@ -265,4 +248,6 @@ class CalendarFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
+    fun getSelectedDate(): Long = selectedDate
 }

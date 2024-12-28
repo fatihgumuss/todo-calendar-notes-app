@@ -48,9 +48,6 @@ class HomeFragment : Fragment(R.layout.fragment_home), SearchView.OnQueryTextLis
         notesViewModel = (activity as MainActivity).noteViewModel
         setupHomeRecyclerView()
 
-        binding.addNoteFab.setOnClickListener {
-            it.findNavController().navigate(R.id.action_homeFragment_to_addNoteFragment)
-        }
 
     }
 

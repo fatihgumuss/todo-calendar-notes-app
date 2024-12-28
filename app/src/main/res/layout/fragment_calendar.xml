@@ -40,16 +40,9 @@
             android:id="@+id/fabImportPdf"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="55dp"
             app:srcCompat="@drawable/ic_file_upload"
             android:contentDescription="Import PDF" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fabAddTodo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_add"
-            android:contentDescription="Add Todo" />
 
     </LinearLayout>
 

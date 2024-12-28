@@ -2,23 +2,23 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/todoListFragment"
-        android:icon="@drawable/ic_todo"
-        android:title="To-Do" />
-
-    <item
         android:id="@+id/homeFragment"
-        android:icon="@drawable/ic_notes"
+        android:icon="@drawable/note"
         android:title="Notes" />
 
     <item
+        android:id="@+id/todoListFragment"
+        android:icon="@drawable/clipboard_check"
+        android:title="To-Do" />
+
+    <item
         android:id="@+id/calendarFragment"
-        android:icon="@drawable/ic_calendar"
+        android:icon="@drawable/calendar"
         android:title="Calendar" />
 
     <item
         android:id="@+id/notificationsFragment"
-        android:icon="@drawable/ic_notifications"
+        android:icon="@drawable/bell"
         android:title="Notifications" />
 
 </menu>

@@ -40,9 +40,6 @@ class TodoListFragment : Fragment(R.layout.fragment_todo_list) {
         toDoViewModel = (activity as MainActivity).toDoViewModel
         setupRecyclerView()
 
-        binding.addTodoFab.setOnClickListener {
-            it.findNavController().navigate(R.id.action_todoListFragment_to_addTodoFragment)
-        }
     }
 
     private fun setupRecyclerView() {

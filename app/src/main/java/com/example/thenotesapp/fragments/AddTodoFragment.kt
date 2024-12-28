@@ -56,16 +56,30 @@ class AddTodoFragment : Fragment(R.layout.fragment_add_todo) {
 
         toDoViewModel = (activity as MainActivity).toDoViewModel
 
-        setHasOptionsMenu(true)
+        // Set up button clicks
+        binding.saveButton.setOnClickListener {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                saveTodo()
+            }
+        }
+
+        binding.backButton.setOnClickListener {
+            view.findNavController().navigateUp()
+        }
 
         // Retrieve the selected date from arguments
-        selectedDate = arguments?.getLong("selectedDate")
+        selectedDate = arguments?.getLong("selectedDate", -1)?.let { 
+            if (it == -1L) null else it 
+        }
 
-        // Set the due date button text if selected date is not null
+        // Set the due date button text only if selected date is not null
         selectedDate?.let {
             val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
             val formattedDueDate = dateFormat.format(it)
             binding.btnDueDate.text = formattedDueDate
+            dueDate = it  // Make sure to set the dueDate variable as well
+        } ?: run {
+            binding.btnDueDate.text = getString(R.string.select_due_date)
         }
 
         // Set up due date picker
@@ -186,8 +200,8 @@ class AddTodoFragment : Fragment(R.layout.fragment_add_todo) {
             val todo = ToDoItem(0, todoTask, todoDescription, false, priority, selectedDate, notificationTime)
             toDoViewModel.insertToDo(todo)
 
-            // Schedule notification if notification time is set
-            if (notificationTime != null) {
+            // Schedule notification if notification time is set and due date exists
+            if (notificationTime != null && selectedDate != null) {
                 scheduleNotification(todoTask, todoDescription, notificationTime!!)
             }
 
@@ -285,23 +299,6 @@ private fun scheduleNotification(title: String, description: String, timeInMilli
     val scheduledTime = SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.getDefault()).format(Date(timeInMillis))
     Log.d("AddTodoFragment", "Notification scheduled for: $scheduledTime")
 }
-
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        menu.clear()
-        inflater.inflate(R.menu.menu_add_todo, menu)
-        super.onCreateOptionsMenu(menu, inflater)
-    }
-
-    @RequiresApi(Build.VERSION_CODES.S)
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.saveTodo -> {
-                saveTodo()
-            }
-        }
-        return super.onOptionsItemSelected(item)
-    }
 
     override fun onDestroyView() {
         super.onDestroyView()

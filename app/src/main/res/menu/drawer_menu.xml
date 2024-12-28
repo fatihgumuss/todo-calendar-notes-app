@@ -2,14 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/notesFragment"
-        android:icon="@drawable/ic_notes"
+        android:icon="@drawable/note"
         android:title="Notes" />
     <item
         android:id="@+id/todoListFragment"
-        android:icon="@drawable/ic_todo"
+        android:icon="@drawable/clipboard_check"
         android:title="To-do List" />
     <item
         android:id="@+id/nav_calendar"
-        android:icon="@drawable/ic_calendar"
+        android:icon="@drawable/calendar"
         android:title="Calendar" />
 </menu>

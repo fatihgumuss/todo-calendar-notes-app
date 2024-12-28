@@ -1,6 +1,7 @@
 package com.example.thenotesapp.fragments
 
 import android.app.DatePickerDialog
+import android.os.Build
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
@@ -55,6 +56,14 @@ class EditTodoFragment : Fragment(R.layout.fragment_edit_todo) {
         // Set up due date picker
         binding.btnDueDate.setOnClickListener {
             showDatePicker()
+        }
+        binding.backButton.setOnClickListener {
+            view.findNavController().navigateUp()
+        }
+        binding.saveButton.setOnClickListener {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                updateTodo()
+            }
         }
 
         setHasOptionsMenu(true)
